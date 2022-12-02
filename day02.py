@@ -26,7 +26,7 @@ required_shape = {
 
 def get_result_score(enemy_shape: str, my_shape: str) -> int:
     match (enemy_shape, my_shape):
-        case m1, m2 if m1 == m2:
+        case s1, s2 if s1 == s2:
             return result_scores['draw']
         case ('rock', 'paper') | ('paper', 'scissors') | ('scissors', 'rock'):
             return result_scores['win']
