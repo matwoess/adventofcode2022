@@ -21,19 +21,11 @@ class Assignment:
 
 
 def part1(assignments: list[Assignment]) -> int:
-    count = 0
-    for a in assignments:
-        if a.sections1.issubset(a.sections2) or a.sections2.issubset(a.sections1):
-            count += 1
-    return count
+    return sum(a.sections1 <= a.sections2 or a.sections2 <= a.sections1 for a in assignments)
 
 
 def part2(assignments: list[Assignment]) -> int:
-    count = 0
-    for a in assignments:
-        if (a.sections1 & a.sections2) != set():
-            count += 1
-    return count
+    return sum((a.sections1 & a.sections2) != set() for a in assignments)
 
 
 if __name__ == '__main__':
