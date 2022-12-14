@@ -17,25 +17,21 @@ def compare(value1, value2) -> int:
             case _, None:
                 return 1
             case int(), int():
-                if left < right:
-                    return -1
-                if right < left:
-                    return 1
-            case list(), list():
+                if left != right:
+                    return left - right
+            case _, _:
+                if isinstance(left, int):
+                    left = [left]
+                if isinstance(right, int):
+                    right = [right]
                 if (res := compare(left, right)) != 0:
-                    return res
-            case int(), list():
-                if (res := compare([left], right)) != 0:
-                    return res
-            case list(), int():
-                if (res := compare(left, [right])) != 0:
                     return res
     return 0
 
 
 def part1(packet_pairs: list[tuple[list, list]]) -> int:
     results = [compare(*pair) for pair in packet_pairs]
-    indices_right_order = [i + 1 for i, res in enumerate(results) if res == -1]
+    indices_right_order = [i + 1 for i, res in enumerate(results) if res < 0]
     return sum(indices_right_order)
 
 
